@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountain Snowfall Prediction System</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏔️ Mountain Snowfall Prediction System</h1>
+            <p>Click anywhere on the map to get advanced snowfall predictions</p>
+        </header>
+
+        <div class="main-content">
+            <div id="map"></div>
+
+            <div id="sidebar" class="sidebar hidden">
+                <button id="closeSidebar" class="close-btn">&times;</button>
+
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Analyzing atmospheric conditions...</p>
+                </div>
+
+                <div id="results" class="results hidden">
+                    <h2>Snowfall Forecast</h2>
+
+                    <div class="location-info">
+                        <h3>📍 Location</h3>
+                        <p><strong>Coordinates:</strong> <span id="coords"></span></p>
+                        <p><strong>Elevation:</strong> <span id="elevation"></span></p>
+                    </div>
+
+                    <div class="forecast-summary">
+                        <h3>❄️ 48-Hour Forecast</h3>
+                        <div class="big-number">
+                            <span id="totalSnow" class="snow-amount">--</span>
+                            <span class="unit">cm</span>
+                        </div>
+                        <p class="snow-inches">(<span id="totalSnowInches">--</span> inches)</p>
+                        <p><strong>Snow-to-Liquid Ratio:</strong> <span id="slr">--</span>:1</p>
+                        <p><strong>Confidence:</strong> <span id="confidence">--</span></p>
+                    </div>
+
+                    <div class="detailed-forecast">
+                        <h3>📊 Detailed Breakdown</h3>
+                        <div id="hourlyBreakdown"></div>
+                    </div>
+
+                    <div class="atmospheric-conditions">
+                        <h3>🌡️ Atmospheric Conditions</h3>
+                        <div id="atmosphericDetails"></div>
+                    </div>
+
+                    <div class="model-info">
+                        <p><small>Model: <span id="modelSource">--</span></small></p>
+                        <p><small>Generated: <span id="timestamp">--</span></small></p>
+                    </div>
+                </div>
+
+                <div id="error" class="error hidden">
+                    <h3>⚠️ Error</h3>
+                    <p id="errorMessage"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>How to use:</h3>
+            <ol>
+                <li>Click anywhere on the map to select a location</li>
+                <li>The system will fetch weather data and analyze atmospheric conditions</li>
+                <li>View detailed snowfall predictions with hourly breakdown</li>
+                <li>Predictions use advanced meteorological algorithms including DGZ analysis</li>
+            </ol>
+            <p><small>Data sources: NOAA GFS, Open-Meteo API, Open-Elevation API</small></p>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/utils.js"></script>
+    <script src="js/weather-api.js"></script>
+    <script src="js/snow-algorithms.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
