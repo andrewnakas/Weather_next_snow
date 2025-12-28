@@ -27,7 +27,7 @@ The system combines multiple meteorological data sources and applies sophisticat
 - **Frontend**: Pure JavaScript (ES6+), HTML5, CSS3
 - **Mapping**: Leaflet.js with OpenTopoMap tiles
 - **Data Sources**:
-  - Open-Meteo API (weather forecasts)
+  - **Google Weather API** (powered by WeatherNext 2 - Google DeepMind's AI forecasting model)
   - Open-Elevation API (terrain elevation)
 - **Deployment**: GitHub Pages via GitHub Actions
 
@@ -35,17 +35,28 @@ The system combines multiple meteorological data sources and applies sophisticat
 
 ### View Online
 
-Visit the live application: [Your GitHub Pages URL]
+Visit the live application: **https://andrewnakas.github.io/Weather_next_snow/**
 
-### Run Locally
+### Setup Your Own Instance
 
-1. Clone the repository:
+1. **Get a Google Weather API Key**:
+   - Visit [Google Cloud Console](https://console.cloud.google.com/)
+   - Enable the Weather API
+   - Create an API key
+   - Keep it secure!
+
+2. **Clone the repository**:
    ```bash
    git clone https://github.com/andrewnakas/Weather_next_snow.git
    cd Weather_next_snow
    ```
 
-2. Serve the files with any web server:
+3. **Configure API Key**:
+   - Open `js/config.js`
+   - Replace `'YOUR_API_KEY_HERE'` with your actual API key
+   - **Important**: Never commit your API key to public repos!
+
+4. **Run locally**:
    ```bash
    # Using Python 3
    python -m http.server 8000
@@ -54,7 +65,23 @@ Visit the live application: [Your GitHub Pages URL]
    npx serve
    ```
 
-3. Open http://localhost:8000 in your browser
+5. **Open** http://localhost:8000 in your browser
+
+### Deploy to GitHub Pages
+
+To deploy with GitHub Actions:
+
+1. **Add API Key as Secret**:
+   - Go to repository Settings → Secrets and variables → Actions
+   - Click "New repository secret"
+   - Name: `GOOGLE_WEATHER_API_KEY`
+   - Value: Your API key
+
+2. **Enable GitHub Pages**:
+   - Go to repository Settings → Pages
+   - Under "Source", select "GitHub Actions"
+
+3. **Push to main branch** - deployment happens automatically!
 
 ## Usage
 
@@ -110,9 +137,17 @@ Weather_next_snow/
 
 ## API Usage
 
-This project uses free, public APIs:
-- **Open-Meteo**: No API key required, CORS-enabled
-- **Open-Elevation**: No API key required, CORS-enabled
+This project uses the following APIs:
+
+### Google Weather API (Required)
+- **What**: Google Maps Platform Weather API powered by WeatherNext 2
+- **Setup**: Get API key from [Google Cloud Console](https://developers.google.com/maps/documentation/weather/get-api-key)
+- **Pricing**: Currently in Preview - free up to 10,000 calls/month, then $0.15 per 1,000 calls
+- **Configuration**: API key stored in `js/config.js` or injected via GitHub Secrets
+
+### Open-Elevation API (Free)
+- **What**: Terrain elevation data
+- **Setup**: No API key required, CORS-enabled
 
 ## Limitations
 
