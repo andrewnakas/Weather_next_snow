@@ -71,17 +71,23 @@ Visit the live application: **https://andrewnakas.github.io/Weather_next_snow/**
 
 To deploy with GitHub Actions:
 
-1. **Add API Key as Secret**:
+1. **Add Secrets to GitHub**:
    - Go to repository Settings → Secrets and variables → Actions
-   - Click "New repository secret"
+   - Add two repository secrets:
+
+   **Secret 1:**
    - Name: `GOOGLE_WEATHER_API_KEY`
-   - Value: Your API key
+   - Value: Your Google Weather API key
+
+   **Secret 2:**
+   - Name: `WEATHERNEXT_EMAIL`
+   - Value: `treesixtyweather@gmail.com`
 
 2. **Enable GitHub Pages**:
    - Go to repository Settings → Pages
    - Under "Source", select "GitHub Actions"
 
-3. **Push to main branch** - deployment happens automatically!
+3. **Push to your branch** - deployment happens automatically!
 
 ## Usage
 

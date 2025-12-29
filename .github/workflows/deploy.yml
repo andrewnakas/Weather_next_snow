@@ -27,6 +27,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Inject API credentials
+        env:
+          GOOGLE_WEATHER_API_KEY: ${{ secrets.GOOGLE_WEATHER_API_KEY }}
+          WEATHERNEXT_EMAIL: ${{ secrets.WEATHERNEXT_EMAIL }}
+        run: |
+          chmod +x .github/workflows/inject-secrets.sh
+          .github/workflows/inject-secrets.sh
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
